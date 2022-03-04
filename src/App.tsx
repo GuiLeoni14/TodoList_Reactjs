@@ -3,6 +3,8 @@ import GlobalStyle from './styles/global';
 import { ThemeConsumer, ThemeProvider } from 'styled-components';
 import light from './styles/themes/light';
 import dark from './styles/themes/dark';
+import Header from './layout/Header';
+import MyRoutes from './routes';
 function App() {
     const [theme, setTheme] = useState(light);
     const toggleTheme = () => {
@@ -11,9 +13,7 @@ function App() {
     return (
         <div className="App">
             <ThemeProvider theme={theme}>
-                <GlobalStyle />
-                <h1 onClick={toggleTheme}>Mudar tema</h1>
-                <h1>TESTANDO</h1>
+                <MyRoutes />
             </ThemeProvider>
         </div>
     );
