@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Container } from '../../styles/container';
-export const MainHeader = styled.header`
+import { MainContainer } from '../../styles/container';
+export const Container = styled.header`
     width: 100%;
     background-color: ${({ theme }) => theme.colors.second};
     height: 10rem;
@@ -9,7 +9,7 @@ export const MainHeader = styled.header`
     justify-content: center;
 `;
 
-export const ContainerHeader = styled(Container)`
+export const Main = styled(MainContainer)`
     display: flex;
     align-items: center;
     justify-content: center;

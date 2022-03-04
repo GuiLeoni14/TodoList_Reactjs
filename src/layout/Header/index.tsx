@@ -1,17 +1,17 @@
 import React from 'react';
-import { Container } from '../../styles/container';
+import { MainContainer } from '../../styles/container';
 import { BsGithub, BsLinkedin } from 'react-icons/bs';
-import { ContainerHeader, ListIcons, MainHeader } from './styles';
-const Header = () => {
+import { Container, ListIcons, Main } from './styles';
+const Header: React.FC = () => {
     return (
-        <MainHeader>
-            <ContainerHeader>
+        <Container>
+            <Main>
                 <ListIcons>
                     <BsGithub />
                     <BsLinkedin />
                 </ListIcons>
-            </ContainerHeader>
-        </MainHeader>
+            </Main>
+        </Container>
     );
 };
 
