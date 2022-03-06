@@ -8,7 +8,3 @@ export type TaskProps = {
 };
 
 export const TaskContext = createContext({} as TaskProps);
-
-export function useTasks() {
-    return useContext(TaskContext);
-}

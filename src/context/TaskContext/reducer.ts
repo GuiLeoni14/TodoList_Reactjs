@@ -1,7 +1,7 @@
 import { ITask } from '../../interfaces/ITask';
 import { InitialState } from './data';
 import { Reducer } from 'react';
-enum TypesAction {
+export enum TypesAction {
     CREATE_TASK = 'CREATE_TASK',
     EDIT_TASK = 'EDIT_TASK',
 }
