@@ -1,11 +1,13 @@
 import React from 'react';
-import { MainFooter } from './styles';
+import { Container, Main } from './styles';
 
-const Footer = () => {
+const Footer: React.FC = () => {
     return (
-        <MainFooter>
-            <h1>Footer</h1>
-        </MainFooter>
+        <Container>
+            <Main>
+                <h1>Footer</h1>
+            </Main>
+        </Container>
     );
 };
 
