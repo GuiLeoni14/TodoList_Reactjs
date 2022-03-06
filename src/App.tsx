@@ -5,6 +5,7 @@ import light from './styles/themes/light';
 import dark from './styles/themes/dark';
 import Header from './layout/Header';
 import MyRoutes from './routes';
+import { TaskProvider } from './context/TaskContext';
 function App() {
     const [theme, setTheme] = useState(light);
     const toggleTheme = () => {
@@ -12,9 +13,11 @@ function App() {
     };
     return (
         <div className="App">
-            <ThemeProvider theme={theme}>
-                <MyRoutes />
-            </ThemeProvider>
+            <TaskProvider>
+                <ThemeProvider theme={theme}>
+                    <MyRoutes />
+                </ThemeProvider>
+            </TaskProvider>
         </div>
     );
 }
