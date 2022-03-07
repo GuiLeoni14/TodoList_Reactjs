@@ -3,8 +3,8 @@ import { createTask, editTask } from './actions';
 import { ITaskAction } from './reducer';
 import { TypesAction } from './reducer';
 export type FactoryProps = (dispatch: React.Dispatch<ITaskAction>) => {
-    createTask: (values: ITask) => typeof createTask;
-    editTask: (id: string) => typeof editTask;
+    createTask: (values: ITask) => void;
+    editTask: (id: string) => void;
 };
 
 export const factory_actions: FactoryProps = (dispatch) => {

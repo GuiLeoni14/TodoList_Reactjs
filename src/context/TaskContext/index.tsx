@@ -10,7 +10,7 @@ type TaskProviderProps = {
     children: React.ReactNode;
 };
 export function TaskProvider({ children }: TaskProviderProps) {
-    const [stateTasks, dispatchTasks] = useReducer(reducer, data);
-    const actions = factory_actions(dispatchTasks);
+    const [stateTasks, dispatch] = useReducer(reducer, data);
+    const actions = factory_actions(dispatch);
     return <TaskContext.Provider value={{ stateTasks, actions }}>{children}</TaskContext.Provider>;
 }
