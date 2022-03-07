@@ -11,7 +11,11 @@ const Home = () => {
     const [actionsState, setActionsState] = useState<ActionsProps>(actions);
     useEffect(() => {
         console.log('Executando...');
-        actionsState.create();
+        const values = {
+            name: 'Astronauta',
+            description: 'Testando',
+        };
+        actionsState.createTask(values);
     }, [actionsState]);
     console.log(tasks);
     const handleOnSubmit = (values: ITask[]): void => {

@@ -5,8 +5,8 @@ import { ITaskAction } from './reducer';
 import { FactoryProps } from './factory_actions';
 import { createTask, editTask } from './actions';
 export type ActionsProps = {
-    create: typeof createTask;
-    editTask: typeof editTask;
+    createTask: (values: ITask) => typeof createTask;
+    editTask: (id: string) => typeof editTask;
 };
 export type TaskProps = {
     stateTasks: InitialState;
