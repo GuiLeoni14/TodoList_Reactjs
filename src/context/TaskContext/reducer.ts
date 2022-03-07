@@ -8,7 +8,7 @@ export enum TypesAction {
 
 export interface ITaskAction {
     type: TypesAction;
-    payload: ITask[];
+    payload?: ITask[];
 }
 export const reducer: Reducer<InitialState, ITaskAction> = (state, action) => {
     switch (action.type) {

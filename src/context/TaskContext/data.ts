@@ -1,6 +1,6 @@
 import { ITask } from '../../interfaces/ITask';
 export type InitialState = {
-    tasks: ITask[];
+    tasks?: ITask[];
     loading: boolean;
 };
 export const data: InitialState = {

@@ -5,10 +5,12 @@ import { data } from './data';
 import { reducer } from './reducer';
 import { TaskProps } from './context';
 import { ITask } from '../../interfaces/ITask';
+import { factory_actions } from './factory_actions';
 type TaskProviderProps = {
     children: React.ReactNode;
 };
 export function TaskProvider({ children }: TaskProviderProps) {
     const [stateTasks, dispatchTasks] = useReducer(reducer, data);
-    return <TaskContext.Provider value={{ stateTasks, dispatchTasks }}>{children}</TaskContext.Provider>;
+    const actions = factory_actions(dispatchTasks);
+    return <TaskContext.Provider value={{ stateTasks, actions }}>{children}</TaskContext.Provider>;
 }
