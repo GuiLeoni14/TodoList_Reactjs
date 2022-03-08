@@ -1,14 +1,14 @@
 import { FunctionComponent, ChangeEvent, FormEvent, useState } from 'react';
 import Label from '../../../components/Label';
 import { ITask } from '../../../interfaces/ITask';
-
-import { Container } from './styles';
+import { Container, Title } from './styles';
 
 interface FormProps {
     handleSubmit(values: ITask): void;
+    titleForm: string;
     tasksList?: ITask;
 }
-function Form({ handleSubmit, tasksList }: FormProps) {
+function Form({ handleSubmit, titleForm, tasksList }: FormProps) {
     const [values, setValues] = useState(tasksList || {});
     const handleOnChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setValues({ ...values, [event.target.name]: event.target.value });
@@ -20,6 +20,7 @@ function Form({ handleSubmit, tasksList }: FormProps) {
 
     return (
         <Container onSubmit={submit}>
+            <Title>{titleForm}</Title>
             <Label name="name" text="Task Name" placeholder="Task name" handleChange={handleOnChange} />
             <Label
                 name="description"

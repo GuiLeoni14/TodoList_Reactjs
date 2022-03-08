@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { BsTropicalStorm } from 'react-icons/bs';
-import Label from '../../components/Label';
 import { ActionsProps, TaskContext } from '../../context/TaskContext/context';
 import { ITask } from '../../interfaces/ITask';
 import Form from './Form';
-import { factory_actions } from '../../context/TaskContext/factory_actions';
 import { useTaskContext } from '../../hooks/useTaskContext';
+import { Container, LeftContent, MainHome, RightContent } from './styles';
+import { MainContainer } from '../../styles/container';
 const Home = () => {
     const { tasks, actions, loading } = useTaskContext();
     const [actionsState, setActionsState] = useState<ActionsProps>(actions);
@@ -14,12 +13,20 @@ const Home = () => {
         actionsState.createTask(values);
     };
     return (
-        <>
-            <Form handleSubmit={handleOnSubmit} />
-            {tasks?.map((task, index) => {
-                return <span key={index}>{task.name}</span>;
-            })}
-        </>
+        <Container>
+            <MainContainer>
+                <MainHome>
+                    <LeftContent>
+                        <Form handleSubmit={handleOnSubmit} titleForm="Adicionar Task" />
+                    </LeftContent>
+                    <RightContent>
+                        {tasks?.map((task, index) => {
+                            return <span key={index}>{task.name}</span>;
+                        })}
+                    </RightContent>
+                </MainHome>
+            </MainContainer>
+        </Container>
     );
 };
 

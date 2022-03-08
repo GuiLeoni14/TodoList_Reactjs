@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { Container, Input } from './styles';
+import { Container, Label as LabelRoot, Input } from './styles';
 
 interface LabelProps {
     text: string;
@@ -10,10 +10,10 @@ interface LabelProps {
 
 function Label({ text, name, placeholder, handleChange }: LabelProps) {
     return (
-        <>
-            <Container htmlFor={name}>{text}</Container>
-            <Input name={name} placeholder={placeholder} id={name} onChange={handleChange} />
-        </>
+        <Container>
+            <Input required type="email" name={name} placeholder={placeholder} id={name} onChange={handleChange} />
+            <LabelRoot htmlFor={name}>{text}</LabelRoot>
+        </Container>
     );
 }
 
