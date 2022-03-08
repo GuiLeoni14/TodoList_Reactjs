@@ -1,18 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BsTropicalStorm } from 'react-icons/bs';
 import Label from '../../components/Label';
-import { TaskContext, useTasks } from '../../context/TaskContext/context';
+import { ActionsProps, TaskContext } from '../../context/TaskContext/context';
 import { ITask } from '../../interfaces/ITask';
 import Form from './Form';
+import { factory_actions } from '../../context/TaskContext/factory_actions';
+import { useTaskContext } from '../../hooks/useTaskContext';
 const Home = () => {
-    const { stateTasks } = useContext(TaskContext);
-    console.log(stateTasks);
-    const handleOnSubmit = (values: ITask[]): void => {
-        const data = { id: '1', name: 'teste', description: 'testando' };
+    const { tasks, actions, loading } = useTaskContext();
+    const [actionsState, setActionsState] = useState<ActionsProps>(actions);
+    console.log(tasks);
+    const handleOnSubmit = (values: ITask): void => {
+        actionsState.createTask(values);
     };
     return (
         <>
             <Form handleSubmit={handleOnSubmit} />
+            {tasks?.map((task, index) => {
+                return <span key={index}>{task.name}</span>;
+            })}
         </>
     );
 };

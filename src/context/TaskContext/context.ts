@@ -2,13 +2,15 @@ import React, { createContext, useContext, useState } from 'react';
 import { data, InitialState } from './data';
 import { ITask } from '../../interfaces/ITask';
 import { ITaskAction } from './reducer';
+import { FactoryProps } from './factory_actions';
+import { createTask, editTask } from './actions';
+export type ActionsProps = {
+    createTask: (values: ITask) => void;
+    editTask: (id: string) => void;
+};
 export type TaskProps = {
     stateTasks: InitialState;
-    dispatchTasks: React.Dispatch<ITaskAction>;
+    actions: ActionsProps;
 };
 
 export const TaskContext = createContext({} as TaskProps);
-
-export function useTasks() {
-    return useContext(TaskContext);
-}
