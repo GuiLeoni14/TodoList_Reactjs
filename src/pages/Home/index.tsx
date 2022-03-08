@@ -9,17 +9,9 @@ import { useTaskContext } from '../../hooks/useTaskContext';
 const Home = () => {
     const { tasks, actions, loading } = useTaskContext();
     const [actionsState, setActionsState] = useState<ActionsProps>(actions);
-    useEffect(() => {
-        console.log('Executando...');
-        const values = {
-            name: 'Astronauta',
-            description: 'Testando',
-        };
-        actionsState.createTask(values);
-    }, [actionsState]);
     console.log(tasks);
-    const handleOnSubmit = (values: ITask[]): void => {
-        const data = { id: '1', name: 'teste', description: 'testando' };
+    const handleOnSubmit = (values: ITask): void => {
+        actionsState.createTask(values);
     };
     return (
         <>
