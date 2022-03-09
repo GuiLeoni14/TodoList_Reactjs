@@ -1,4 +1,5 @@
 import { FunctionComponent, ChangeEvent, FormEvent, useState } from 'react';
+import { DefaultButton } from '../../../components/DefaultButton';
 import Label from '../../../components/Label';
 import { ITask } from '../../../interfaces/ITask';
 import { Container, Title } from './styles';
@@ -26,9 +27,10 @@ function Form({ handleSubmit, titleForm, tasksList }: FormProps) {
                 name="description"
                 text="Task description"
                 placeholder="Task description"
+                textarea={true}
                 handleChange={handleOnChange}
             />
-            <button type="submit">Cadastrar</button>
+            <DefaultButton text="Cadastrar" />
         </Container>
     );
 }

@@ -5,10 +5,14 @@ import Form from './Form';
 import { useTaskContext } from '../../hooks/useTaskContext';
 import { Container, LeftContent, MainHome, RightContent } from './styles';
 import { MainContainer } from '../../styles/container';
+import CardTask from './CardTask';
 const Home = () => {
     const { tasks, actions, loading } = useTaskContext();
     const [actionsState, setActionsState] = useState<ActionsProps>(actions);
     console.log(tasks);
+    useEffect(() => {
+        actionsState.loadTask();
+    }, [actionsState]);
     const handleOnSubmit = (values: ITask): void => {
         actionsState.createTask(values);
     };
@@ -21,7 +25,7 @@ const Home = () => {
                     </LeftContent>
                     <RightContent>
                         {tasks?.map((task, index) => {
-                            return <span key={index}>{task.name}</span>;
+                            return <CardTask key={index} name={task.name} description={task.description} />;
                         })}
                     </RightContent>
                 </MainHome>
