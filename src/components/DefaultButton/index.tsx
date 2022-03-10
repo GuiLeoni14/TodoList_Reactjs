@@ -1,17 +1,30 @@
 import { FormEvent, HTMLInputTypeAttribute, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from './styles';
-
+import icon_check from '../../assets/img/icon-check.svg';
+export enum ETypeButton {
+    completed = 'completed',
+    progress = 'progress',
+}
 type DefaultButtonProps = {
     text: string;
-    children?: ReactNode;
+    handleClick?(): void;
+    typeButton?: ETypeButton;
     customClass?: string;
-    type?: HTMLInputTypeAttribute;
-    link?: string;
 };
-export function DefaultButton({ children, text, customClass, type = 'submit', link }: DefaultButtonProps) {
-    if (link) {
-        return <Link to={link}>{children}</Link>;
-    }
-    return <Button type={type} placeholder={text} className={customClass} />;
+export function DefaultButton({ text, handleClick, typeButton = ETypeButton.progress }: DefaultButtonProps) {
+    return (
+        <>
+            {typeButton === ETypeButton.completed ? (
+                <Button className={`${ETypeButton.completed} ${typeButton}`} onClick={handleClick}>
+                    <img src={icon_check} alt="check icon for status tasks" />
+                    {text}
+                </Button>
+            ) : (
+                <Button className={`${ETypeButton.completed} ${typeButton}`} onClick={handleClick}>
+                    {text}
+                </Button>
+            )}
+        </>
+    );
 }

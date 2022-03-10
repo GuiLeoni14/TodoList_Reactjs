@@ -7,11 +7,9 @@ export default function MyRoutes() {
     return (
         <Router>
             <GlobalStyle />
-            <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
             </Routes>
-            <Footer />
         </Router>
     );
 }
