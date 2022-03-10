@@ -3,7 +3,7 @@ import { ActionsProps, TaskContext } from '../../context/TaskContext/context';
 import { ITask } from '../../interfaces/ITask';
 import Form from './Form';
 import { useTaskContext } from '../../hooks/useTaskContext';
-import { Container, LeftContent, MainHome, RightContent } from './styles';
+import { Container, LeftContent, MainHome, RightContent, ContentRight } from './styles';
 import { MainContainer } from '../../styles/container';
 import CardTask from './CardTask';
 import UserInfo from './UserInfo';
@@ -26,9 +26,11 @@ const Home = () => {
                         <UserInfo />
                     </LeftContent>
                     <RightContent>
-                        <Search placeholder="Procurar tarefas" />
-                        <h1>Tarefas</h1>
-                        <CardTask />
+                        <ContentRight>
+                            <Search placeholder="Procurar tarefas" />
+                            <h1>Tarefas</h1>
+                            <CardTask />
+                        </ContentRight>
                     </RightContent>
                 </MainHome>
             </MainContainer>
