@@ -1,16 +1,12 @@
 import React from 'react';
 import { MainContainer } from '../../styles/container';
 import { BsGithub, BsLinkedin } from 'react-icons/bs';
-import { Container, ListIcons, Main } from './styles';
+import { Container } from './styles';
+import UserInfo from '../../pages/Home/UserInfo';
 const Header: React.FC = () => {
     return (
         <Container>
-            <Main>
-                <ListIcons>
-                    <BsGithub />
-                    <BsLinkedin />
-                </ListIcons>
-            </Main>
+            <UserInfo />
         </Container>
     );
 };

@@ -12,7 +12,7 @@ type DefaultButtonProps = {
     typeButton?: ETypeButton;
     customClass?: string;
 };
-export function DefaultButton({ text, handleClick, typeButton = ETypeButton.progress }: DefaultButtonProps) {
+export function DefaultButton({ text, handleClick, typeButton }: DefaultButtonProps) {
     return (
         <>
             {typeButton === ETypeButton.completed ? (
@@ -21,7 +21,7 @@ export function DefaultButton({ text, handleClick, typeButton = ETypeButton.prog
                     {text}
                 </Button>
             ) : (
-                <Button className={`${ETypeButton.completed} ${typeButton}`} onClick={handleClick}>
+                <Button className={`${ETypeButton.progress} ${typeButton}`} onClick={handleClick}>
                     {text}
                 </Button>
             )}

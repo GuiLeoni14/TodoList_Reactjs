@@ -1,4 +1,6 @@
 export interface ITask {
-    name: string;
+    guid: string;
+    title: string;
     description: string;
+    situation: string;
 }

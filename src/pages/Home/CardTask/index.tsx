@@ -1,42 +1,25 @@
 import { DefaultButton } from '../../../components/DefaultButton';
 import icon_point from '../../../assets/img/icon-points.svg';
-import {
-    Container,
-    Text,
-    Left,
-    Right,
-    Icon,
-    ScrollView,
-    ScrollBar,
-    ScrollThumb,
-    ScrollCorner,
-    ScrollArea,
-} from './styles';
+import { Container, Text, Left, Right, Icon } from './styles';
 import { ETypeButton } from '../../../components/DefaultButton';
-function CardTask() {
+import { ITask } from '../../../interfaces/ITask';
+import ScrollArea from '../../../components/ScrollArea';
+import { ETypeScrollArea } from '../../../components/ScrollArea';
+function CardTask({ guid, title, description, situation }: ITask) {
+    console.log('Fui chamado');
     return (
         <Container>
             <Left>
                 <Text>
-                    <h4>Nome</h4>
-                    <ScrollArea>
-                        <ScrollView>
-                            <p>
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio nulla aspernatur dolore
-                                at nisi pariatur voluptatem natus possimus, consequuntur officia obcaecati, voluptate,
-                                eveniet enim! Repellat ut nam distinctio optio harum. Lorem ipsum dolor sit amet
-                            </p>
-                        </ScrollView>
-                        <ScrollBar orientation="vertical">
-                            <ScrollThumb />
-                        </ScrollBar>
-                        <ScrollBar orientation="horizontal">
-                            <ScrollThumb />
-                        </ScrollBar>
-                        <ScrollCorner />
+                    <h4>{title}</h4>
+                    <ScrollArea typeScroll={ETypeScrollArea.CARD_TASK}>
+                        <p>{description}</p>
                     </ScrollArea>
                 </Text>
-                <DefaultButton text="Concluído" typeButton={ETypeButton.completed} />
+                <DefaultButton
+                    text="Concluído"
+                    typeButton={situation === 'completed' ? ETypeButton.completed : ETypeButton.progress}
+                />
             </Left>
             <Right>
                 <Icon src={icon_point} />

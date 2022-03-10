@@ -10,8 +10,8 @@ import UserInfo from './UserInfo';
 import Search from '../../components/Search';
 const Home = () => {
     const { tasks, actions, loading } = useTaskContext();
-    const [actionsState, setActionsState] = useState<ActionsProps>(actions);
     console.log(tasks);
+    const [actionsState, setActionsState] = useState<ActionsProps>(actions);
     useEffect(() => {
         actionsState.loadTask();
     }, [actionsState]);
@@ -20,20 +20,21 @@ const Home = () => {
     };
     return (
         <Container>
-            <MainContainer>
-                <MainHome>
-                    <LeftContent>
-                        <UserInfo />
-                    </LeftContent>
-                    <RightContent>
-                        <ContentRight>
-                            <Search placeholder="Procurar tarefas" />
-                            <h1>Tarefas</h1>
-                            <CardTask />
-                        </ContentRight>
-                    </RightContent>
-                </MainHome>
-            </MainContainer>
+            <MainHome>
+                <ContentRight>
+                    <Search placeholder="Procurar tarefas" />
+                    <h1>Tarefas</h1>
+                    {tasks?.map((task) => (
+                        <CardTask
+                            key={task.guid}
+                            title={task.title}
+                            situation={task.situation}
+                            guid={task.guid}
+                            description={task.description}
+                        />
+                    ))}
+                </ContentRight>
+            </MainHome>
         </Container>
     );
 };

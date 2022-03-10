@@ -1,6 +1,7 @@
 import { ITask } from '../../interfaces/ITask';
 import { TypesAction } from './reducer';
 import { ITaskAction } from './reducer';
+import axios from 'axios';
 export const createTask = (dispatch: React.Dispatch<ITaskAction>, values: ITask) => {
     const _tasks = localStorage.getItem('tasks') || '[]';
     const beforeStorage: ITask[] | null = JSON.parse(_tasks);
@@ -17,8 +18,13 @@ export const editTask = (dispatch: React.Dispatch<ITaskAction>, id: string): voi
     dispatch({ type: TypesAction.EDIT_TASK });
 };
 
-export const loadStorage = (dispatch: React.Dispatch<ITaskAction>) => {
-    const _tasks = localStorage.getItem('tasks') || '[]';
-    const storage = JSON.parse(_tasks);
-    dispatch({ type: TypesAction.LOAD_TASK, payload: storage });
+export const loadStorage = async (dispatch: React.Dispatch<ITaskAction>) => {
+    dispatch({ type: TypesAction.LOADING });
+    try {
+        const { data } = await axios.get('https://chronos.compraqui.app/api/tasks');
+        console.log(data);
+        dispatch({ type: TypesAction.LOAD_TASK, payload: data });
+    } catch (e) {
+        console.log(e);
+    }
 };

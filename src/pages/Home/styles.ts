@@ -8,9 +8,10 @@ export const Container = styled.section`
 export const MainHome = styled.div`
     width: 100%;
     min-height: 100vh;
+    padding-top: 10rem;
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
 `;
 export const LeftContent = styled.div`
     min-height: inherit;
