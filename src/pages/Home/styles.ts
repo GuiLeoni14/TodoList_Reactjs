@@ -1,21 +1,25 @@
 import styled from 'styled-components';
 export const Container = styled.section`
     width: 100%;
-    height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
 `;
 export const MainHome = styled.div`
     width: 100%;
+    min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 `;
 export const LeftContent = styled.div`
-    width: 100%;
-    max-width: 35%;
+    min-height: inherit;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: ${({ theme }) => theme.colors.primary};
 `;
+
 export const RightContent = styled.div`
     width: 100%;
     padding: 2rem;

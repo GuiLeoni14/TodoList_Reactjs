@@ -6,6 +6,7 @@ import { useTaskContext } from '../../hooks/useTaskContext';
 import { Container, LeftContent, MainHome, RightContent } from './styles';
 import { MainContainer } from '../../styles/container';
 import CardTask from './CardTask';
+import UserInfo from './UserInfo';
 const Home = () => {
     const { tasks, actions, loading } = useTaskContext();
     const [actionsState, setActionsState] = useState<ActionsProps>(actions);
@@ -21,13 +22,9 @@ const Home = () => {
             <MainContainer>
                 <MainHome>
                     <LeftContent>
-                        <Form handleSubmit={handleOnSubmit} titleForm="Adicionar Task" />
+                        <UserInfo />
                     </LeftContent>
-                    <RightContent>
-                        {tasks?.map((task, index) => {
-                            return <CardTask key={index} name={task.name} description={task.description} />;
-                        })}
-                    </RightContent>
+                    <RightContent />
                 </MainHome>
             </MainContainer>
         </Container>

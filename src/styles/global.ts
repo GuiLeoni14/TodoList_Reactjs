@@ -10,10 +10,10 @@ export default createGlobalStyle`
         outline: none;
         list-style: none;
         text-decoration: none;
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'Roboto', sans-serif;
+        color: ${(props) => props.theme.colors.title};
     }
     body{
-        color: ${(props) => props.theme.colors.title};
         background: ${(props) => props.theme.colors.background};
     }
     html{
