@@ -1,25 +1,40 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { BsTropicalStorm } from 'react-icons/bs';
-import Label from '../../components/Label';
 import { ActionsProps, TaskContext } from '../../context/TaskContext/context';
 import { ITask } from '../../interfaces/ITask';
 import Form from './Form';
-import { factory_actions } from '../../context/TaskContext/factory_actions';
 import { useTaskContext } from '../../hooks/useTaskContext';
+import { Container, LeftContent, MainHome, RightContent, ContentRight } from './styles';
+import { MainContainer } from '../../styles/container';
+import CardTask from './CardTask';
+import UserInfo from './UserInfo';
+import Search from '../../components/Search';
 const Home = () => {
     const { tasks, actions, loading } = useTaskContext();
     const [actionsState, setActionsState] = useState<ActionsProps>(actions);
     console.log(tasks);
+    useEffect(() => {
+        actionsState.loadTask();
+    }, [actionsState]);
     const handleOnSubmit = (values: ITask): void => {
         actionsState.createTask(values);
     };
     return (
-        <>
-            <Form handleSubmit={handleOnSubmit} />
-            {tasks?.map((task, index) => {
-                return <span key={index}>{task.name}</span>;
-            })}
-        </>
+        <Container>
+            <MainContainer>
+                <MainHome>
+                    <LeftContent>
+                        <UserInfo />
+                    </LeftContent>
+                    <RightContent>
+                        <ContentRight>
+                            <Search placeholder="Procurar tarefas" />
+                            <h1>Tarefas</h1>
+                            <CardTask />
+                        </ContentRight>
+                    </RightContent>
+                </MainHome>
+            </MainContainer>
+        </Container>
     );
 };
 
