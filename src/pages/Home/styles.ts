@@ -7,7 +7,7 @@ export const Container = styled.section`
 `;
 export const MainHome = styled.div`
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     padding-top: 10rem;
     display: flex;
     align-items: center;
@@ -31,11 +31,21 @@ export const RightContent = styled.div`
 
 export const ContentRight = styled.div`
     width: 100%;
+    height: calc(100% - 20rem);
+    position: relative;
     max-width: 58.3rem;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
+    overflow: auto;
+`;
+
+export const Text = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     & > h1 {
         width: 100%;
         margin: 3.5rem 0rem;

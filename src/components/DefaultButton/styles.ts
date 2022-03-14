@@ -11,14 +11,32 @@ export const Button = styled.button`
     cursor: pointer;
     transition: all 0.3s;
     color: #000;
-    ${({ className }) =>
-        className?.includes(ETypeButton.completed) &&
-        css`
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            & > img {
-                margin-right: 1.1rem;
-            }
-        `}
+    white-space: nowrap;
+    ${({ className }) => {
+        if (className?.includes(ETypeButton.completed)) {
+            return css`
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                & > img {
+                    margin-right: 1.1rem;
+                }
+            `;
+        }
+        if (className?.includes(ETypeButton.created)) {
+            return css`
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                line-height: 5.4rem;
+                padding: 0rem 1.5rem;
+                font-size: 1.8rem;
+                color: ${({ theme }) => theme.colors.second};
+                background-color: ${({ theme }) => theme.colors.primary};
+                & > img {
+                    margin-right: 0.8rem;
+                }
+            `;
+        }
+    }}
 `;

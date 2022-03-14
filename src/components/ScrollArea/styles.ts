@@ -1,9 +1,13 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
 
 export const ScrollArea = styled(ScrollAreaPrimitive.Root)`
     width: 100%;
-    height: 7rem;
+    ${({ className }) =>
+        className?.includes('card_task') &&
+        css`
+            height: 7rem;
+        `}
     overflow: hidden;
     padding-right: 1rem;
 `;
@@ -32,6 +36,11 @@ export const ScrollView = styled(ScrollAreaPrimitive.Viewport)`
     width: 100%;
     height: 100%;
     border-radius: inherit;
+    ${({ className }) =>
+        !className?.includes('card_task') &&
+        css`
+            padding-right: 1rem;
+        `}
 `;
 
 export const ScrollThumb = styled(ScrollAreaPrimitive.Thumb)`

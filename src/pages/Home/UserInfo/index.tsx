@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { Container, Top, ImageUser, DescriptionUser, Bottom, Task, About } from './styles';
 import icon_user from '../../../assets/img/icon-user.svg';
 import icon_task from '../../../assets/img/icon-task.svg';
@@ -8,6 +8,10 @@ interface UserInfoProps {
 }
 
 function UserInfo() {
+    const [hrefPage, setHrefPage] = useState<string>('');
+    useEffect(() => {
+        setHrefPage(document.location.href);
+    }, []);
     return (
         <Container>
             <Top>
@@ -20,11 +24,11 @@ function UserInfo() {
                 </DescriptionUser>
             </Top>
             <Bottom>
-                <Task>
+                <Task className={!hrefPage.includes('sobre') ? 'checked' : 'disable'}>
                     <img src={icon_task} alt="" />
                     <span>Tarefas</span>
                 </Task>
-                <About>
+                <About className={hrefPage.includes('sobre') ? 'checked' : 'disable'}>
                     <img src={icon_about} alt="" />
                     <span>Sobre</span>
                 </About>

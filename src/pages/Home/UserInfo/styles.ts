@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 export const Container = styled.div`
     width: 100%;
     padding: 3rem 2.4rem;
@@ -67,6 +67,11 @@ export const About = styled.div`
     justify-content: space-between;
     border-radius: 1rem;
     margin-top: 1.4rem;
+    ${({ className }) =>
+        className?.includes('checked') &&
+        css`
+            filter: brightness(80%);
+        `}
     span {
         font-style: normal;
         font-weight: 500;
@@ -76,5 +81,9 @@ export const About = styled.div`
     }
 `;
 export const Task = styled(About)`
-    filter: brightness(80%);
+    ${({ className }) =>
+        className?.includes('checked') &&
+        css`
+            filter: brightness(80%);
+        `}
 `;

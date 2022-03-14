@@ -9,14 +9,14 @@ export enum ETypeScrollArea {
 
 interface ScrollAreaProps {
     children: ReactNode;
-    typeScroll: ETypeScrollArea;
+    typeScroll?: ETypeScrollArea;
 }
 
 function ScrollArea({ children, typeScroll }: ScrollAreaProps) {
     return (
         <>
             {typeScroll === ETypeScrollArea.CARD_TASK ? (
-                <ScrollRoot>
+                <ScrollRoot className="card_task">
                     <ScrollView>{children}</ScrollView>
                     <ScrollBar orientation="vertical">
                         <ScrollThumb />

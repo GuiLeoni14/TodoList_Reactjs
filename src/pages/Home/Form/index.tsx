@@ -1,5 +1,5 @@
 import { FunctionComponent, ChangeEvent, FormEvent, useState } from 'react';
-import { DefaultButton } from '../../../components/DefaultButton';
+import { DefaultButton, ETypeButton } from '../../../components/DefaultButton';
 import Label from '../../../components/Label';
 import { ITask } from '../../../interfaces/ITask';
 import { Container, Title } from './styles';
@@ -30,7 +30,7 @@ function Form({ handleSubmit, titleForm, tasksList }: FormProps) {
                 textarea={true}
                 handleChange={handleOnChange}
             />
-            <DefaultButton text="Cadastrar" />
+            <DefaultButton text="Cadastrar" typeButton={ETypeButton.submit} />
         </Container>
     );
 }

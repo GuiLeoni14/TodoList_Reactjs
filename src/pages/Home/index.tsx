@@ -3,11 +3,11 @@ import { ActionsProps, TaskContext } from '../../context/TaskContext/context';
 import { ITask } from '../../interfaces/ITask';
 import Form from './Form';
 import { useTaskContext } from '../../hooks/useTaskContext';
-import { Container, LeftContent, MainHome, RightContent, ContentRight } from './styles';
-import { MainContainer } from '../../styles/container';
+import { Container, LeftContent, MainHome, RightContent, ContentRight, Text } from './styles';
 import CardTask from './CardTask';
-import UserInfo from './UserInfo';
 import Search from '../../components/Search';
+import DialogCreate from './DialogCreate';
+import ScrollArea from '../../components/ScrollArea';
 const Home = () => {
     const { tasks, actions, loading } = useTaskContext();
     console.log(tasks);
@@ -23,16 +23,21 @@ const Home = () => {
             <MainHome>
                 <ContentRight>
                     <Search placeholder="Procurar tarefas" />
-                    <h1>Tarefas</h1>
-                    {tasks?.map((task) => (
-                        <CardTask
-                            key={task.guid}
-                            title={task.title}
-                            situation={task.situation}
-                            guid={task.guid}
-                            description={task.description}
-                        />
-                    ))}
+                    <Text>
+                        <h1>Tarefas</h1>
+                        <DialogCreate />
+                    </Text>
+                    <ScrollArea>
+                        {tasks?.map((task) => (
+                            <CardTask
+                                key={task.guid}
+                                title={task.title}
+                                situation={task.situation}
+                                guid={task.guid}
+                                description={task.description}
+                            />
+                        ))}
+                    </ScrollArea>
                 </ContentRight>
             </MainHome>
         </Container>

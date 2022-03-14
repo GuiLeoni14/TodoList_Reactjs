@@ -17,7 +17,7 @@ function CardTask({ guid, title, description, situation }: ITask) {
                     </ScrollArea>
                 </Text>
                 <DefaultButton
-                    text="Concluído"
+                    text={situation === 'completed' ? 'Concluído' : 'Em progresso'}
                     typeButton={situation === 'completed' ? ETypeButton.completed : ETypeButton.progress}
                 />
             </Left>

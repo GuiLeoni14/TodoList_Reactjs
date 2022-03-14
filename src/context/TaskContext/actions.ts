@@ -2,15 +2,14 @@ import { ITask } from '../../interfaces/ITask';
 import { TypesAction } from './reducer';
 import { ITaskAction } from './reducer';
 import axios from 'axios';
-export const createTask = (dispatch: React.Dispatch<ITaskAction>, values: ITask) => {
-    const _tasks = localStorage.getItem('tasks') || '[]';
-    const beforeStorage: ITask[] | null = JSON.parse(_tasks);
-    console.log(beforeStorage);
-    beforeStorage
-        ? localStorage.setItem('tasks', JSON.stringify([...beforeStorage, values]))
-        : localStorage.setItem('tasks', JSON.stringify([values]));
-    loadStorage(dispatch);
-    dispatch({ type: TypesAction.CREATE_TASK });
+export const createTask = async (dispatch: React.Dispatch<ITaskAction>, values: ITask) => {
+    try {
+        await axios.post(`${import.meta.env.VITE_REACT_APP_URL_API}`, values);
+        await loadStorage(dispatch);
+        dispatch({ type: TypesAction.CREATE_TASK });
+    } catch (e) {
+        console.log(e);
+    }
 };
 
 export const editTask = (dispatch: React.Dispatch<ITaskAction>, id: string): void => {
