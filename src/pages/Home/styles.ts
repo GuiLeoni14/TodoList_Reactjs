@@ -33,7 +33,7 @@ export const ContentRight = styled.div`
     width: 100%;
     height: calc(100% - 20rem);
     position: relative;
-    max-width: 58.3rem;
+    max-width: 59.3rem;
     display: flex;
     align-items: center;
     justify-content: flex-start;

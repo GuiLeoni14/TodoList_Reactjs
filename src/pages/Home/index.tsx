@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
 import { ActionsProps, TaskContext } from '../../context/TaskContext/context';
 import { ITask } from '../../interfaces/ITask';
 import Form from './Form';
@@ -12,6 +12,7 @@ import Loading from '../../components/Loading';
 const Home = () => {
     const { tasks, actions, loading } = useTaskContext();
     const [actionsState, setActionsState] = useState<ActionsProps>(actions);
+    const [searchValues, setSearchValues] = useState<ITask[]>([]);
     useEffect(() => {
         actionsState.loadTask();
     }, [actionsState]);
@@ -26,30 +27,47 @@ const Home = () => {
         console.log(values);
         actionsState.deleteTask(values.guid);
     };
+    const search = (event: ChangeEvent<HTMLInputElement>) => {
+        console.log(searchValues);
+        const searchItens = event.target.value.toLocaleLowerCase();
+        tasks && setSearchValues(tasks.filter((task) => task.title.toLocaleLowerCase().includes(searchItens)));
+    };
     if (loading) return <Loading />;
     return (
         <Container>
             <MainHome>
                 <ContentRight>
-                    <Search placeholder="Procurar tarefas" />
+                    <Search placeholder="Procurar tarefas" handleChange={search} />
                     <Text>
                         <h1>Tarefas</h1>
                         <DialogCreate titleForm="Criar Tarefa" handleSubmit={handleOnSubmit} />
                     </Text>
                     <ScrollArea>
-                        {tasks &&
-                            tasks.length > 0 &&
-                            tasks.map((task) => (
-                                <CardTask
-                                    key={task.guid}
-                                    title={task.title}
-                                    situation={task.situation}
-                                    guid={task.guid}
-                                    description={task.description}
-                                    handleOnSubmitEdit={handleOnSubmitEdit}
-                                    handleOnSubmitDelete={handleOnSubmitDelete}
-                                />
-                            ))}
+                        {searchValues.length > 0
+                            ? searchValues.map((task) => (
+                                  <CardTask
+                                      key={task.guid}
+                                      title={task.title}
+                                      situation={task.situation}
+                                      guid={task.guid}
+                                      description={task.description}
+                                      handleOnSubmitEdit={handleOnSubmitEdit}
+                                      handleOnSubmitDelete={handleOnSubmitDelete}
+                                  />
+                              ))
+                            : tasks &&
+                              tasks.length > 0 &&
+                              tasks.map((task) => (
+                                  <CardTask
+                                      key={task.guid}
+                                      title={task.title}
+                                      situation={task.situation}
+                                      guid={task.guid}
+                                      description={task.description}
+                                      handleOnSubmitEdit={handleOnSubmitEdit}
+                                      handleOnSubmitDelete={handleOnSubmitDelete}
+                                  />
+                              ))}
                     </ScrollArea>
                 </ContentRight>
             </MainHome>

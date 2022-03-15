@@ -41,6 +41,7 @@ export const loadStorage = async (dispatch: React.Dispatch<ITaskAction>): Promis
     dispatch({ type: TypesAction.LOADING });
     try {
         const { data } = await axios.get(`${import.meta.env.VITE_REACT_APP_URL_API}`);
+        console.log(data);
         dispatch({ type: TypesAction.LOAD_TASK, payload: data });
     } catch (e) {
         console.log(e);

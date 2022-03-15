@@ -1,9 +1,10 @@
+import { ChangeEvent } from 'react';
 import icon_search from '../../assets/img/icon-search.svg';
 import { Container } from './styles';
 
 type SearchProps = {
     placeholder: string;
-    handleChange?(): void;
+    handleChange(event: ChangeEvent<HTMLInputElement>): void;
 };
 
 export default function Search({ placeholder, handleChange }: SearchProps) {
