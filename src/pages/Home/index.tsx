@@ -8,16 +8,21 @@ import CardTask from './CardTask';
 import Search from '../../components/Search';
 import DialogCreate from './DialogCreate';
 import ScrollArea from '../../components/ScrollArea';
+import Loading from '../../components/Loading';
 const Home = () => {
     const { tasks, actions, loading } = useTaskContext();
-    console.log(tasks);
     const [actionsState, setActionsState] = useState<ActionsProps>(actions);
     useEffect(() => {
         actionsState.loadTask();
     }, [actionsState]);
     const handleOnSubmit = (values: ITask): void => {
+        console.log('Me chamou');
         actionsState.createTask(values);
     };
+    const handleOnSubmitEdit = (values: ITask): void => {
+        actionsState.editTask(values);
+    };
+    if (loading) return <Loading />;
     return (
         <Container>
             <MainHome>
@@ -37,6 +42,7 @@ const Home = () => {
                                     situation={task.situation}
                                     guid={task.guid}
                                     description={task.description}
+                                    handleOnSubmitEdit={handleOnSubmitEdit}
                                 />
                             ))}
                     </ScrollArea>

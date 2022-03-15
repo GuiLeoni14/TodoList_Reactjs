@@ -18,6 +18,10 @@ function Form({ handleSubmit, titleForm, task, CloseButton }: FormProps) {
     const handleOnChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setValues({ ...values, [event.target.name]: event.target.value });
     };
+    const handleOnChangeSelect = (event: ChangeEvent<HTMLSelectElement>): void => {
+        console.log(event.target.options[event.target.selectedIndex].text);
+        setValues({ ...values, situation: event.target.options[event.target.selectedIndex].text });
+    };
     const submit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
         handleSubmit(values as ITask);
@@ -28,6 +32,7 @@ function Form({ handleSubmit, titleForm, task, CloseButton }: FormProps) {
             <Title>{titleForm}</Title>
             <Input
                 size="medium"
+                required
                 id="title"
                 name="title"
                 value={values.title ? values.title : ''}
@@ -39,6 +44,7 @@ function Form({ handleSubmit, titleForm, task, CloseButton }: FormProps) {
             />
             <Input
                 id="description"
+                required
                 name="description"
                 InputProps={{ style: { fontSize: 16 } }}
                 InputLabelProps={{ style: { fontSize: 16 } }}
@@ -47,7 +53,12 @@ function Form({ handleSubmit, titleForm, task, CloseButton }: FormProps) {
                 variant="outlined"
                 onChange={handleOnChange}
             />
+            <select name="situation" id="situation" onChange={handleOnChangeSelect}>
+                <option value="uncompleted">Em progresso</option>
+                <option value="completed">Concluído</option>
+            </select>
             <Buttons>
+                {task && <CloseButton type="button">deletar</CloseButton>}
                 <CloseButton>Cancelar</CloseButton>
                 <DefaultButton text="Salvar" typeButton={ETypeButton.save} />
             </Buttons>

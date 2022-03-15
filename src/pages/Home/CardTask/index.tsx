@@ -5,8 +5,16 @@ import { ETypeButton } from '../../../components/DefaultButton';
 import { ITask } from '../../../interfaces/ITask';
 import ScrollArea from '../../../components/ScrollArea';
 import { ETypeScrollArea } from '../../../components/ScrollArea';
-function CardTask({ guid, title, description, situation }: ITask) {
-    console.log('Fui chamado');
+import DialogEdit from '../DialogEdit';
+import { FormEvent } from 'react';
+type CardTaskProps = {
+    guid: string;
+    title: string;
+    description: string;
+    situation: string;
+    handleOnSubmitEdit(values: ITask): void;
+};
+function CardTask({ guid, title, description, situation, handleOnSubmitEdit }: CardTaskProps) {
     return (
         <Container>
             <Left>
@@ -22,7 +30,11 @@ function CardTask({ guid, title, description, situation }: ITask) {
                 />
             </Left>
             <Right>
-                <Icon src={icon_point} />
+                <DialogEdit
+                    values={{ guid, title, description, situation }}
+                    titleForm="Editar Tarefa"
+                    handleSubmit={handleOnSubmitEdit}
+                />
             </Right>
         </Container>
     );
