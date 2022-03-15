@@ -38,5 +38,15 @@ export const Button = styled.button`
                 }
             `;
         }
+        if (className?.includes(ETypeButton.save) || className?.includes(ETypeButton.cancel)) {
+            return css`
+                font-style: normal;
+                font-weight: 600;
+                font-size: 1.4rem;
+                text-transform: uppercase;
+                line-height: 1.7rem;
+                color: ${({ theme }) => theme.colors.primary};
+            `;
+        }
     }}
 `;

@@ -1,17 +1,23 @@
 import { ReactNode } from 'react';
 import { DefaultButton, ETypeButton } from '../../../components/DefaultButton';
-
-import { Container, Overlay, Content, Button } from './styles';
-
-function DialogCreate() {
+import { ITask } from '../../../interfaces/ITask';
+import Form from '../Form';
+import icon_plus from '../../../assets/img/icon-plus.svg';
+import { Container, Overlay, Content, Button, ButtonCancel } from './styles';
+type DialogDeleteProps = {
+    titleForm: string;
+    handleSubmit(values: ITask): void;
+};
+function DialogCreate({ titleForm, handleSubmit }: DialogDeleteProps) {
     return (
         <Container>
             <Button>
-                <DefaultButton text="Create Task" typeButton={ETypeButton.created} />
+                <img src={icon_plus} alt="" />
+                Nova tarefa
             </Button>
             <Overlay>
                 <Content>
-                    <h1>Testando</h1>
+                    <Form titleForm={titleForm} handleSubmit={handleSubmit} CloseButton={ButtonCancel} />
                 </Content>
             </Overlay>
         </Container>

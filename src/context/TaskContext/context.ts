@@ -6,8 +6,8 @@ import { FactoryProps } from './factory_actions';
 import { createTask, editTask, loadStorage } from './actions';
 export type ActionsProps = {
     createTask: (values: ITask) => Promise<ITask[] | unknown>;
-    editTask: (id: string) => void;
-    loadTask: () => void;
+    editTask: (values: ITask) => Promise<void>;
+    loadTask: () => Promise<void>;
 };
 export type TaskProps = {
     stateTasks: InitialState;

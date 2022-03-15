@@ -1,16 +1,20 @@
-import { FunctionComponent, ChangeEvent, FormEvent, useState } from 'react';
+import { TextField } from '@mui/material';
+import { FunctionComponent, ChangeEvent, FormEvent, useState, ReactNode } from 'react';
 import { DefaultButton, ETypeButton } from '../../../components/DefaultButton';
 import Label from '../../../components/Label';
 import { ITask } from '../../../interfaces/ITask';
-import { Container, Title } from './styles';
-
+import { Container, Input, Title, Buttons } from './styles';
+import * as Dialog from '@radix-ui/react-dialog';
+import { useTaskContext } from '../../../hooks/useTaskContext';
 interface FormProps {
     handleSubmit(values: ITask): void;
     titleForm: string;
-    tasksList?: ITask;
+    CloseButton: React.ForwardRefExoticComponent<Dialog.DialogCloseProps & React.RefAttributes<HTMLButtonElement>>;
+    task?: ITask;
 }
-function Form({ handleSubmit, titleForm, tasksList }: FormProps) {
-    const [values, setValues] = useState(tasksList || {});
+function Form({ handleSubmit, titleForm, task, CloseButton }: FormProps) {
+    const [values, setValues] = useState(task || ({} as ITask));
+    const { loading } = useTaskContext();
     const handleOnChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setValues({ ...values, [event.target.name]: event.target.value });
     };
@@ -22,15 +26,31 @@ function Form({ handleSubmit, titleForm, tasksList }: FormProps) {
     return (
         <Container onSubmit={submit}>
             <Title>{titleForm}</Title>
-            <Label name="name" text="Task Name" placeholder="Task name" handleChange={handleOnChange} />
-            <Label
-                name="description"
-                text="Task description"
-                placeholder="Task description"
-                textarea={true}
-                handleChange={handleOnChange}
+            <Input
+                size="medium"
+                id="title"
+                name="title"
+                value={values.title ? values.title : ''}
+                label="Nome da Tarefa"
+                InputProps={{ style: { fontSize: 16 } }}
+                InputLabelProps={{ style: { fontSize: 16 } }}
+                variant="outlined"
+                onChange={handleOnChange}
             />
-            <DefaultButton text="Cadastrar" typeButton={ETypeButton.submit} />
+            <Input
+                id="description"
+                name="description"
+                InputProps={{ style: { fontSize: 16 } }}
+                InputLabelProps={{ style: { fontSize: 16 } }}
+                value={values.description ? values.description : ''}
+                label="Descrição da Tarefa"
+                variant="outlined"
+                onChange={handleOnChange}
+            />
+            <Buttons>
+                <CloseButton>Cancelar</CloseButton>
+                <DefaultButton text="Salvar" typeButton={ETypeButton.save} />
+            </Buttons>
         </Container>
     );
 }

@@ -6,6 +6,7 @@ export enum TypesAction {
     LOAD_TASK = 'LOAD_TASK',
     CREATE_TASK = 'CREATE_TASK',
     EDIT_TASK = 'EDIT_TASK',
+    ERROR = 'ERROR',
 }
 
 export interface ITaskAction {
@@ -20,6 +21,8 @@ export const reducer: Reducer<InitialState, ITaskAction> = (state, action) => {
             return { ...state, tasks: action.payload, loading: false };
         case TypesAction.CREATE_TASK:
             return { ...state };
+        case TypesAction.ERROR:
+            return { ...state, error: true };
     }
     return { ...state };
 };

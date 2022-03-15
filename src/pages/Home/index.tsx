@@ -25,18 +25,20 @@ const Home = () => {
                     <Search placeholder="Procurar tarefas" />
                     <Text>
                         <h1>Tarefas</h1>
-                        <DialogCreate />
+                        <DialogCreate titleForm="Criar Tarefa" handleSubmit={handleOnSubmit} />
                     </Text>
                     <ScrollArea>
-                        {tasks?.map((task) => (
-                            <CardTask
-                                key={task.guid}
-                                title={task.title}
-                                situation={task.situation}
-                                guid={task.guid}
-                                description={task.description}
-                            />
-                        ))}
+                        {tasks &&
+                            tasks.length > 0 &&
+                            tasks.map((task) => (
+                                <CardTask
+                                    key={task.guid}
+                                    title={task.title}
+                                    situation={task.situation}
+                                    guid={task.guid}
+                                    description={task.description}
+                                />
+                            ))}
                     </ScrollArea>
                 </ContentRight>
             </MainHome>
