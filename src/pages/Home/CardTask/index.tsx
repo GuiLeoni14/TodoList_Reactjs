@@ -7,14 +7,16 @@ import ScrollArea from '../../../components/ScrollArea';
 import { ETypeScrollArea } from '../../../components/ScrollArea';
 import DialogEdit from '../DialogEdit';
 import { FormEvent } from 'react';
+import DialogDelete from '../DialogDelete';
 type CardTaskProps = {
     guid: string;
     title: string;
     description: string;
     situation: string;
     handleOnSubmitEdit(values: ITask): void;
+    handleOnSubmitDelete(values: ITask): void;
 };
-function CardTask({ guid, title, description, situation, handleOnSubmitEdit }: CardTaskProps) {
+function CardTask({ guid, title, description, situation, handleOnSubmitEdit, handleOnSubmitDelete }: CardTaskProps) {
     return (
         <Container>
             <Left>
@@ -35,6 +37,7 @@ function CardTask({ guid, title, description, situation, handleOnSubmitEdit }: C
                     titleForm="Editar Tarefa"
                     handleSubmit={handleOnSubmitEdit}
                 />
+                <DialogDelete handleSubmit={handleOnSubmitDelete} values={{ guid, title, description, situation }} />
             </Right>
         </Container>
     );

@@ -38,7 +38,7 @@ export const Button = styled.button`
                 }
             `;
         }
-        if (className?.includes(ETypeButton.save) || className?.includes(ETypeButton.cancel)) {
+        if (className?.includes(ETypeButton.save) || className?.includes(ETypeButton.delete)) {
             return css`
                 font-style: normal;
                 font-weight: 600;

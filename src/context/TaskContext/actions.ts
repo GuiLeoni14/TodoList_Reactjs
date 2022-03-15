@@ -25,6 +25,18 @@ export const editTask = async (dispatch: React.Dispatch<ITaskAction>, values: IT
     }
 };
 
+export const deleteTask = async (dispatch: React.Dispatch<ITaskAction>, id: string | number): Promise<void> => {
+    dispatch({ type: TypesAction.LOADING });
+    try {
+        await axios.delete(`${import.meta.env.VITE_REACT_APP_URL_API}/${id}`);
+        console.log('fui chamado');
+        await loadStorage(dispatch);
+        dispatch({ type: TypesAction.DELETE_TASK });
+    } catch (e) {
+        console.log(e);
+    }
+};
+
 export const loadStorage = async (dispatch: React.Dispatch<ITaskAction>): Promise<void> => {
     dispatch({ type: TypesAction.LOADING });
     try {

@@ -22,6 +22,10 @@ const Home = () => {
     const handleOnSubmitEdit = (values: ITask): void => {
         actionsState.editTask(values);
     };
+    const handleOnSubmitDelete = (values: ITask): void => {
+        console.log(values);
+        actionsState.deleteTask(values.guid);
+    };
     if (loading) return <Loading />;
     return (
         <Container>
@@ -43,6 +47,7 @@ const Home = () => {
                                     guid={task.guid}
                                     description={task.description}
                                     handleOnSubmitEdit={handleOnSubmitEdit}
+                                    handleOnSubmitDelete={handleOnSubmitDelete}
                                 />
                             ))}
                     </ScrollArea>

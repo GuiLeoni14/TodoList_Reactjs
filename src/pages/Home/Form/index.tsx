@@ -3,7 +3,7 @@ import { FunctionComponent, ChangeEvent, FormEvent, useState, ReactNode } from '
 import { DefaultButton, ETypeButton } from '../../../components/DefaultButton';
 import Label from '../../../components/Label';
 import { ITask } from '../../../interfaces/ITask';
-import { Container, Input, Title, Buttons } from './styles';
+import { Container, Input, Title, Buttons, Button } from './styles';
 import * as Dialog from '@radix-ui/react-dialog';
 import { useTaskContext } from '../../../hooks/useTaskContext';
 interface FormProps {
@@ -11,10 +11,11 @@ interface FormProps {
     titleForm: string;
     CloseButton: React.ForwardRefExoticComponent<Dialog.DialogCloseProps & React.RefAttributes<HTMLButtonElement>>;
     task?: ITask;
+    id?: string | number;
 }
-function Form({ handleSubmit, titleForm, task, CloseButton }: FormProps) {
+function Form({ handleSubmit, titleForm, task, CloseButton, id }: FormProps) {
     const [values, setValues] = useState(task || ({} as ITask));
-    const { loading } = useTaskContext();
+
     const handleOnChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setValues({ ...values, [event.target.name]: event.target.value });
     };
@@ -53,14 +54,15 @@ function Form({ handleSubmit, titleForm, task, CloseButton }: FormProps) {
                 variant="outlined"
                 onChange={handleOnChange}
             />
-            <select name="situation" id="situation" onChange={handleOnChangeSelect}>
+            {/* <select name="situation" id="situation" onChange={handleOnChangeSelect}>
                 <option value="uncompleted">Em progresso</option>
                 <option value="completed">Concluído</option>
-            </select>
+            </select> */}
             <Buttons>
-                {task && <CloseButton type="button">deletar</CloseButton>}
-                <CloseButton>Cancelar</CloseButton>
-                <DefaultButton text="Salvar" typeButton={ETypeButton.save} />
+                <CloseButton name="cancelar">Cancelar</CloseButton>
+                <Button type="submit" name="salvar">
+                    Salvar
+                </Button>
             </Buttons>
         </Container>
     );

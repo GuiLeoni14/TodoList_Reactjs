@@ -42,3 +42,14 @@ export const Buttons = styled.div`
         margin-left: 1.4rem;
     }
 `;
+export const Button = styled.button`
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    line-height: 1.7rem;
+    color: ${({ theme }) => theme.colors.primary};
+`;

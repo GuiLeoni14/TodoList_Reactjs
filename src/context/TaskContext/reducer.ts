@@ -6,6 +6,7 @@ export enum TypesAction {
     LOAD_TASK = 'LOAD_TASK',
     CREATE_TASK = 'CREATE_TASK',
     EDIT_TASK = 'EDIT_TASK',
+    DELETE_TASK = 'DELETE_TASK',
     ERROR = 'ERROR',
 }
 

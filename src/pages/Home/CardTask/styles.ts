@@ -48,6 +48,11 @@ export const Text = styled.div`
         line-height: 2.1rem;
     }
 `;
-export const Right = styled.div``;
+export const Right = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+`;
 
 export const Icon = styled.img``;

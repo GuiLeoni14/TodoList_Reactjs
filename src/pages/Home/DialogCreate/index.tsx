@@ -4,11 +4,11 @@ import { ITask } from '../../../interfaces/ITask';
 import Form from '../Form';
 import icon_plus from '../../../assets/img/icon-plus.svg';
 import { Container, Overlay, Content, Button, ButtonCancel } from './styles';
-type DialogDeleteProps = {
+type DialogCreateProps = {
     titleForm: string;
     handleSubmit(values: ITask): void;
 };
-function DialogCreate({ titleForm, handleSubmit }: DialogDeleteProps) {
+function DialogCreate({ titleForm, handleSubmit }: DialogCreateProps) {
     return (
         <Container>
             <Button>

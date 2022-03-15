@@ -9,16 +9,17 @@ export enum ETypeButton {
     progress = 'progress',
     created = 'created',
     submit = 'submit',
-    cancel = 'cancel',
+    delete = 'delete',
     save = 'save',
 }
 type DefaultButtonProps = {
     text: string;
+    name?: string;
     handleClick?(): void;
     typeButton?: ETypeButton;
     customClass?: string;
 };
-export function DefaultButton({ text, handleClick, typeButton }: DefaultButtonProps) {
+export function DefaultButton({ text, name, handleClick, typeButton }: DefaultButtonProps) {
     if (typeButton === ETypeButton.completed) {
         return (
             <Button className={`${typeButton}`} onClick={handleClick}>
@@ -49,15 +50,15 @@ export function DefaultButton({ text, handleClick, typeButton }: DefaultButtonPr
             </Button>
         );
     }
-    if (typeButton === ETypeButton.cancel) {
+    if (typeButton === ETypeButton.delete) {
         return (
-            <Button className={`${typeButton}`} type="submit">
+            <Button className={`${typeButton}`} onClick={handleClick}>
                 {text}
             </Button>
         );
     }
     return (
-        <Button className={`${ETypeButton.progress} ${typeButton}`} type={typeButton}>
+        <Button className={`${ETypeButton.progress} ${typeButton}`} type={typeButton} onClick={handleClick}>
             {text}
         </Button>
     );

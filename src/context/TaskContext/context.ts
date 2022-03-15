@@ -7,6 +7,7 @@ import { createTask, editTask, loadStorage } from './actions';
 export type ActionsProps = {
     createTask: (values: ITask) => Promise<ITask[] | unknown>;
     editTask: (values: ITask) => Promise<void>;
+    deleteTask: (id: string | number) => Promise<void>;
     loadTask: () => Promise<void>;
 };
 export type TaskProps = {
