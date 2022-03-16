@@ -5,7 +5,7 @@ import { ITaskAction } from './reducer';
 import { FactoryProps } from './factory_actions';
 import { createTask, editTask, loadStorage } from './actions';
 export type ActionsProps = {
-    createTask: (values: ITask) => Promise<ITask[] | unknown>;
+    createTask: (values: ITask) => Promise<void>;
     editTask: (values: ITask) => Promise<void>;
     deleteTask: (id: string | number) => Promise<void>;
     loadTask: () => Promise<void>;

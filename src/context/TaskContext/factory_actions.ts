@@ -3,7 +3,7 @@ import { createTask, deleteTask, editTask, loadStorage } from './actions';
 import { ITaskAction } from './reducer';
 import { TypesAction } from './reducer';
 export type FactoryProps = (dispatch: React.Dispatch<ITaskAction>) => {
-    createTask: (values: ITask) => Promise<ITask[] | unknown>;
+    createTask: (values: ITask) => Promise<void>;
     editTask: (values: ITask) => Promise<void>;
     deleteTask: (id: string | number) => Promise<void>;
     loadTask: () => Promise<void>;

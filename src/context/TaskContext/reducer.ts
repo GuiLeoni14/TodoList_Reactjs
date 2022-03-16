@@ -21,7 +21,7 @@ export const reducer: Reducer<InitialState, ITaskAction> = (state, action) => {
         case TypesAction.LOAD_TASK:
             return { ...state, tasks: action.payload, loading: false };
         case TypesAction.CREATE_TASK:
-            return { ...state };
+            return { ...state, loading: false };
         case TypesAction.ERROR:
             return { ...state, error: true };
     }
